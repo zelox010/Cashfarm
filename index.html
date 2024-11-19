@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Farm - Ultimate Jailbreak Script</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <meta name="author" content="Akyalw discord: akyalw">
+    <meta property="og:title" content="Cash Farm - #1 Jailbreak Script">
+    <meta property="og:description" content="Maximize your Roblox Jailbreak earnings with Cash Farm. Join discord.gg/cashfarm">
+    <meta name="theme-color" content="#00FFA1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00FFA1;
+            --primary-dark: #00CC81;
+            --secondary: #FF6B6B;
+            --background: #0F172A;
+            --background-light: #1E293B;
+            --text: #E2E8F0;
+            --text-dark: #94A3B8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        main {
+            padding-top: 80px;
+        }
+
+        section {
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            text-align: center;
+            background: linear-gradient(to right, var(--primary), #4FD1C5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--background);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 161, 0.2);
+        }
+
+        #home {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--background-light);
+            border: 1px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 161, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 255, 161, 0.1);
+        }
+
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-list li:hover {
+            transform: translateX(10px);
+        }
+
+        .feature-list li i {
+            margin-right: 1rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background-color: var(--background-light);
+            border: 1px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), #4FD1C5);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 30px rgba(0, 255, 161, 0.1);
+        }
+
+        .price {
+            font-size: 3rem;
+            color: var(--primary);
+            margin: 1rem 0;
+            font-weight: 700;
+        }
+
+        footer {
+            background-color: var(--background-light);
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), #4FD1C5);
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        #about {
+            position: relative;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 2rem;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 255, 161, 0.1);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            h1 {
+                font-size: 5rem;
+            }
+        }
+
+        /* Particle animation */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Custom cursor */
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+        }
+
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(90px, 9999px, 95px, 0);
+                transform: skew(0.7deg);
+            }
+            5% {
+                clip: rect(5px, 9999px, 10px, 0);
+                transform: skew(0.4deg);
+            }
+            10% {
+                clip: rect(59px, 9999px, 64px, 0);
+                transform: skew(0.2deg);
+            }
+            15% {
+                clip: rect(32px, 9999px, 37px, 0);
+                transform: skew(0.8deg);
+            }
+            20% {
+                clip: rect(76px, 9999px, 81px, 0);
+                transform: skew(0.5deg);
+            }
+            25% {
+                clip: rect(14px, 9999px, 19px, 0);
+                transform: skew(0.3deg);
+            }
+            30% {
+                clip: rect(68px, 9999px, 73px, 0);
+                transform: skew(0.6deg);
+            }
+            35% {
+                clip: rect(41px, 9999px, 46px, 0);
+                transform: skew(0.9deg);
+            }
+            40% {
+                clip: rect(23px, 9999px, 28px, 0);
+                transform: skew(0.1deg);
+            }
+            45% {
+                clip: rect(87px, 9999px, 92px, 0);
+                transform: skew(0.7deg);
+            }
+            50% {
+                clip: rect(50px, 9999px, 55px, 0);
+                transform: skew(0.4deg);
+            }
+            55% {
+                clip: rect(9px, 9999px, 14px, 0);
+                transform: skew(0.2deg);
+            }
+            60% {
+                clip: rect(63px, 9999px, 68px, 0);
+                transform: skew(0.8deg);
+            }
+            65% {
+                clip: rect(36px, 9999px, 41px, 0);
+                transform: skew(0.5deg);
+            }
+            70% {
+                clip: rect(80px, 9999px, 85px, 0);
+                transform: skew(0.3deg);
+            }
+            75% {
+                clip: rect(18px, 9999px, 23px, 0);
+                transform: skew(0.6deg);
+            }
+            80% {
+                clip: rect(72px, 9999px, 77px, 0);
+                transform: skew(0.9deg);
+            }
+            85% {
+                clip: rect(45px, 9999px, 50px, 0);
+                transform: skew(0.1deg);
+            }
+            90% {
+                clip: rect(27px, 9999px, 32px, 0);
+                transform: skew(0.7deg);
+            }
+            95% {
+                clip: rect(91px, 9999px, 96px, 0);
+                transform: skew(0.4deg);
+            }
+            100% {
+                clip: rect(54px, 9999px, 59px, 0);
+                transform: skew(0.2deg);
+            }
+        }
+
+        @keyframes glitch-anim-2 {
+            0% {
+                clip: rect(54px, 9999px, 59px, 0);
+                transform: skew(0.2deg);
+            }
+            5% {
+                clip: rect(91px, 9999px, 96px, 0);
+                transform: skew(0.4deg);
+            }
+            10% {
+                clip: rect(27px, 9999px, 32px, 0);
+                transform: skew(0.7deg);
+            }
+            15% {
+                clip: rect(45px, 9999px, 50px, 0);
+                transform: skew(0.1deg);
+            }
+            20% {
+                clip: rect(72px, 9999px, 77px, 0);
+                transform: skew(0.9deg);
+            }
+            25% {
+                clip: rect(18px, 9999px, 23px, 0);
+                transform: skew(0.6deg);
+            }
+            30% {
+                clip: rect(80px, 9999px, 85px, 0);
+                transform: skew(0.3deg);
+            }
+            35% {
+                clip: rect(36px, 9999px, 41px, 0);
+                transform: skew(0.5deg);
+            }
+            40% {
+                clip: rect(63px, 9999px, 68px, 0);
+                transform: skew(0.8deg);
+            }
+            45% {
+                clip: rect(9px, 9999px, 14px, 0);
+                transform: skew(0.2deg);
+            }
+            50% {
+                clip: rect(50px, 9999px, 55px, 0);
+                transform: skew(0.4deg);
+            }
+            55% {
+                clip: rect(87px, 9999px, 92px, 0);
+                transform: skew(0.7deg);
+            }
+            60% {
+                clip: rect(23px, 9999px, 28px, 0);
+                transform: skew(0.1deg);
+            }
+            65% {
+                clip: rect(41px, 9999px, 46px, 0);
+                transform: skew(0.9deg);
+            }
+            70% {
+                clip: rect(68px, 9999px, 73px, 0);
+                transform: skew(0.6deg);
+            }
+            75% {
+                clip: rect(14px, 9999px, 19px, 0);
+                transform: skew(0.3deg);
+            }
+            80% {
+                clip: rect(76px, 9999px, 81px, 0);
+                transform: skew(0.5deg);
+            }
+            85% {
+                clip: rect(32px, 9999px, 37px, 0);
+                transform: skew(0.8deg);
+            }
+            90% {
+                clip: rect(59px, 9999px, 64px, 0);
+                transform: skew(0.2deg);
+            }
+            95% {
+                clip: rect(5px, 9999px, 10px, 0);
+                transform: skew(0.4deg);
+            }
+            100% {
+                clip: rect(90px, 9999px, 95px, 0);
+                transform: skew(0.7deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <header>
+        <nav class="container">
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#premium">Premium</a>
+                <a href="#support">Support</a>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="home">
+            <h1 class="glitch" data-text="cashfarm.lol">cashfarm.lol</h1>
+            <p>Experience the ultimate Roblox Jailbreak script. Maximize your earnings and dominate the game with Cash Farm.</p>
+            <a href="#features" class="cta-button">Explore Features <i class="fas fa-chevron-right"></i></a>
+        </section>
+
+        <section id="about">
+            <h2>About Cash Farm</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to Cash Farm, the pinnacle of Roblox Jailbreak automation. Our cutting-edge script is meticulously designed to optimize your gameplay, allowing you to maximize your earnings with unparalleled efficiency. With Cash Farm, you're not just playing - you're revolutionizing your Jailbreak experience.</p>
+                    <p>Join our ever-growing community of satisfied users and elevate your game to unprecedented heights. Cash Farm isn't just a tool; it's your key to dominating Jailbreak like never before.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://cashfarm.lol/assets/menu1.png" alt="Cash Farm Menu" class="floating">
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2>Premium Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>📦 Autocrate Features</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-shield-alt"></i> Undetectable stealth technology</li>
+                        <li><i class="fas fa-dollar-sign"></i> Staggering 400K-500K+ hourly earnings</li>
+                        <li><i class="fas fa-mobile-alt"></i> Optimized mobile mode for emulators</li>
+                        <li><i class="fas fa-ban"></i> Intelligent basic crate skipping for enhanced profits</li>
+                        <li><i class="fas fa-ad"></i> Ad-free experience (Premium exclusive)</li>
+                        <li><i class="fas fa-link"></i> Advanced Discord webhooking for real-time stats</li>
+                        <li><i class="fas fa-unlock"></i> Automated safe opening system</li>
+                        <li><i class="fas fa-bolt"></i> Lightning-fast mansion farming (3-5x faster)</li>
+                        <li><i class="fas fa-ship"></i> Complete cargo ship robbery (both crates)</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>🔫 Autorob <ul class="feature-list">
+                        <li><i class="fas fa-user-secret"></i> Cutting-edge undetectable technology</li>
+                        <li><i class="fas fa-fist-raised"></i> Advanced Kill Aura system</li>
+                        <li><i class="fas fa-server"></i> Intelligent server hopping</li>
+                        <li><i class="fas fa-tachometer-alt"></i> Performance-boosting FPS mode</li>
+                        <li><i class="fas fa-bolt"></i> Instant teleportation capabilities</li>
+                        <li><i class="fas fa-rocket"></i> Hyper-efficient robbery mode</li>
+                        <li><i class="fas fa-users"></i> Smart server selection for optimal robberies</li>
+                        <li><i class="fas fa-box"></i> Dual ship crate robbery system</li>
+                        <li><i class="fas fa-chart-line"></i> Impressive 350k-450k hourly earnings</li>
+                        <li><i class="fas fa-cog"></i> Customizable Discord webhooking</li>
+                        <li><i class="fas fa-ban"></i> Ad-free, hassle-free experience</li>
+                        <li><i class="fas fa-plus-circle"></i> Continuous updates and new features</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="premium">
+            <h2>Premium Pricing</h2>
+            <p>Unlock the full potential of Cash Farm with our premium packages. Choose the plan that suits your needs and elevate your Jailbreak experience today.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>1 Week Access</h3>
+                    <p class="price">$1.75</p>
+                    <p>Perfect for a quick boost</p>
+                    <a href="https://discord.gg/cashfarm" class="cta-button">Get Started <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="pricing-card">
+                    <h3>1 Month Access</h3>
+                    <p class="price">$5</p>
+                    <p>Ideal for dedicated players</p>
+                    <a href="https://discord.gg/cashfarm" class="cta-button">Get Started <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Lifetime Access</h3>
+                    <p class="price">$10</p>
+                    <p>Best value for true enthusiasts</p>
+                    <a href="https://discord.gg/cashfarm" class="cta-button">Get Started <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="support">
+            <h2>Need Assistance?</h2>
+            <p>Our dedicated support team is ready to help you with any questions or issues. Join our thriving Discord community for instant support and to connect with other Cash Farm users.</p>
+            <a href="https://discord.gg/cashfarm" class="cta-button">Join Our Discord <i class="fas fa-discord"></i></a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Cash Farm. All rights reserved.</p>
+        <p>Stay updated with the latest news and features!</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Particle.js configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#00FFA1' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#00FFA1', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+            },
+            retina_detect: true
+        });
+
+        // Smooth scrolling for anchor links slay right xd
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for fade-in effect
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(15, 23, 42, 0.8)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'transparent';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Update navvvvv link on scroll btw tempi do u have a big gyat or a small gyat
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('click', () => {
+            cursor.classList.add('expand');
+            setTimeout(() => {
+                cursor.classList.remove('expand');
+            }, 500);
+        });
+
+        // Hover effect for interactive elements yay finally lol
+        document.querySelectorAll('a, button, .feature-card, .pricing-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+    </script>
+</body>
+</html>
